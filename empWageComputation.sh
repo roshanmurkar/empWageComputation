@@ -233,3 +233,4 @@ done
 totalSalary="$( getEmpWage $totalEmpHrs )"
 
 echo "--------------------------------------------------------"
+
