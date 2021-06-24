@@ -21,8 +21,6 @@ emp1=1;
 emp2=2;
 emp3=3;
 wagePerHr=20;
-#hrInDay=8;
-#totalWageInDay=0;
 empCheck=$((RANDOM%4))
 
 case $empCheck in
