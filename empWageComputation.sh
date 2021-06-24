@@ -14,7 +14,7 @@ else
         echo "Employee is absent"
 fi
 
-
+echo "---------------------------------------------"
 #uc2-calculate daily empWage
 
 emp1=1;
@@ -42,7 +42,7 @@ case $empCheck in
 esac
 totalWageInDay=$(($empHrs*$wagePerHr))
 
-
+echo "-----------------------------------------------"
 #uc2-calculate partTime
 
 isPartTime=1;
@@ -59,7 +59,7 @@ case $empCheck in
 esac
 salarypartTime=$(($empHrs*$empRatePerHr))
 
-
+echo "----------------------------------------------------"
 #uc4 - using switch case part time and full time
 
 
@@ -80,3 +80,39 @@ case $empCheck in
                 ;;
 esac
 empSalary=$(($empHrs*$empRatePerHr));
+
+
+echo "---------------------------------------------"
+#uc5-calculate wage for a month
+
+isPartTime=1;
+isFullTime=2;
+totalSalary=0;
+empRatePerHr=20;
+maxHrsInMonth=10;
+numWorkingDays=20;
+
+totalEmpHrs=0;
+totalWorkingDays=0;
+
+while [[ $totalEmpHrs -lt $maxHrsInMonth && $totalWorkingDays -lt $numWorkingDays ]]
+do
+        ((totalWorkingDays++))
+        empCheck=$((RANDOM%3));
+        case $empCheck in
+                $isFullTime)
+                        empHrs=8
+                        ;;
+                $isPartTime)
+                        empHrs=4
+                        ;;
+                *)
+                        empHrs=0
+                        ;;
+        esac
+        totalEmpHrs=$(($totalEmpHrs+$empHrs))
+done
+
+totalSalary=$(($totalEmpHrs*$empRatePerHr));
+
+
