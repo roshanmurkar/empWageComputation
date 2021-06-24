@@ -115,4 +115,42 @@ done
 
 totalSalary=$(($totalEmpHrs*$empRatePerHr));
 
+echo "--------------------------------------------------"
 
+
+#uc6-condition for calculate wage
+
+isFullTime=2;
+isPartTime=1;
+maxHrInMonth=100;
+empRatePerHr=20;
+numWorkingDays=20;
+
+totalWorkingHours=0;
+totalWorkingDays=0;
+
+function getWorkingHours() {
+        case $1 in
+                $isFullTime)
+                        workHours=8
+                        ;;
+                $isPartTime)
+                        workHours=4
+                        ;;
+                *)
+                        workHours=0
+                        ;;
+        esac
+}
+
+while [[ $totalWorkingHours -lt $maxHrInMonth &&
+        $totalWorkingDays -lt $numWorkingDays ]]
+do
+        ((totalWorkingDays++))
+        getWorkingHours $((RANDOM%3))
+        totalWorkingHours=$(($totalWorkingHours+$workHours));
+done
+
+totalSalary=$(($totalWorkingHours*$empRatePerHr));
+
+echo "------------------------------------------------"
